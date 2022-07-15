@@ -7,21 +7,18 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  palette:
-    primary: 'purple'
-    accent: 'deep purple'
   features:
     - content.code.annotate
     # - content.tabs.link
     - content.tooltips
     # - header.autohide
-    # - navigation.expand
+    - navigation.expand
     - navigation.indexes
     # - navigation.instant
     # - navigation.prune
-    - navigation.sections
+    #- navigation.sections
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - search.highlight
@@ -30,27 +27,26 @@ theme:
     - toc.follow
     # - toc.integrate
   palette:
-    - scheme: default
+      scheme: slate
       primary: purple
       accent: purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: purple
-      accent: purple
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    
 
 
-
-nav:
-  - index.md
-  - FrontEnd:
-    - NVM (Node Version Manager): frontend/nvm.md
-  - logs:
-    - mkdocs setup history: logs/mkdocs.md
+# Plugins
+plugins:
+  - search
+  # - redirects:
+  #     redirect_maps:
+  #       changelog/insiders.md: insiders/changelog.md
+  #       conventions.md: philosophy.md
+  #       reference/abbreviations.md: reference/tooltips.md
+  #       reference/meta-tags.md: reference/index.md
+  #       reference/variables.md: https://mkdocs-macros-plugin.readthedocs.io/
+  #       sponsorship.md: insiders/index.md
+  #       upgrading.md: upgrade.md
+  # - minify:
+  #     minify_html: true
 
 
 markdown_extensions:
@@ -74,7 +70,8 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.inlinehilite
+  - pymdownx.snippets       
+  - pymdownx.inlinehilite: 
   - pymdownx.keys
   - pymdownx.magiclink:
       repo_url_shorthand: true
@@ -92,3 +89,17 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
+
+nav:
+  - index.md
+  - Frontend:
+    - NVM (Node Version Manager): frontend/nvm.md
+  - Backend:
+    - redis:
+      - install: backend/redis/install.md
+    - java:
+      - indexs: backend/java/java.md
+  - logs:
+    - mkdocs setup history: logs/mkdocs.md
+
