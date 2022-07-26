@@ -96,10 +96,20 @@ nav:
   - Frontend:
     - NVM (Node Version Manager): frontend/nvm.md
   - Backend:
-    - redis:
-      - install: backend/redis/install.md
-    - java:
+    - Docker:
+      - Install : backend/docker/install.md 
+      - Docker Command: backend/docker/docker-command.md 
+      - Docker Compose: backend/docker/docker-compose.md 
+    - Redis:
+      - Install: backend/redis/install.md
+      - Redis Cluster: backend/redis/cluster.md
+    - Python:
+      - pyenv: backend/python/pyenv.md
+    - Java:
       - indexs: backend/java/java.md
-  - logs:
+  - Devops:
+    - Linux:
+      - Package 관련 명령어 : devops/linux/package-command.md
+  - Logs:
     - mkdocs setup history: logs/mkdocs.md
 
