@@ -1,6 +1,10 @@
 # Docker Command
 
-자주 사용하는 docker 명령어 정리와 기록
+자주 사용하는 docker 명령어 정리와 기록  
+(공식 문서를 많이 보는 습관을..)
+
+!!! info "docker reference"
+    https://docs.docker.com/engine/reference/commandline/docker/
 
 ## image 관련
 
@@ -95,12 +99,30 @@ docker run redis:latest
 docker run -d redis:latest
 ```
 
+#### port 옵션
+
+port 옵션을 지정하지 않는 경우 host 내부에서만 docker image에 설정된 기본 포트로만 접근이 가능함 (외부에서는 접근 불가)
+
+port 옵션을 지정 할 경우 외부에서 host port 로 접근시 container port 로 port 
+forwarding함
+
+``` console title="docker run -p [host port]:[container port] [이미지명]"
+docker run -p 6379:6379 redis:latest
+```
+    <div class="result" markdown>
+        <figure markdown>
+        ![](assets/docker-command/2022-07-27-15-28-03.png)
+        </figure>
+    </div> 
+
+
+
 #### name 옵션
 
 docker run 에 name 옵션을 지정하지 않고 구동할 경우 구동된 container 명이 임의의 이름으로 생성된다. 추후 docker container를 조작할 경우 임의의 container 명 때문에 번거로울 수 있으니 run 명령어에 name 옵션을 추가하는 것을 권장함.
 
-``` console title="docker run -d --name [container명] [이미지명]"
-docker run -d --name redis redis:latest
+``` console title="docker run --name [container명] [이미지명]"
+docker run --name redis redis:latest
 ```
 
 ### docker container
@@ -169,13 +191,32 @@ docker rm -f $(docker ps -aq)
 ```
 
 
+#### container 명령어 실행
 
-@@@ docker exec
+실행중인 컨테이너에 명령어를 전달하여 실행
 
-//별도 md로 뺄것들
+``` console title="docker exec [컨테이너명] [명령어]"
+docker exec redis redis-cli ...
+```
 
-@@@ dockerFile
-@@@ centos user가  polkit 실행되는 문제
+추가 옵션이 없는 위의 exec 명령어는 해당 컨테이너에 명령어를 한번만 실행하고 명령어를 종료 한다. exec 할때 항상 따라다니는 옵션을 기본적으로 지정한다.
+
+!!! note "exec -it"
+    * -i : 사용자와 container간 interactive 하도록 표준입출력(STDIN)을 열어둠
+    * -t : container 텍스트 기반 터미널 에뮬레이터 실행
+
+
+``` console title="container shell 접속"
+docker exec -it redis bash
+```
+    <div class="result" markdown>
+        <figure markdown>
+        ![](assets/docker-command/2022-07-27-15-57-14.png)
+        </figure>
+        <figcaption>콘솔의 현재 위치가 host가 아닌 가상의 container의 /data를 가리키고 있다.</figcaption>
+    </div> 
+
+
 
 
  
